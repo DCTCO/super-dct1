@@ -2710,49 +2710,94 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </footer>
 
     <div class="sticky-bar">
-      <a href="javascript:void(0);" onclick="loadAndOpenKakao()" class="kakao_btn">
-        <i class="fas fa-comment"></i> 카카오톡 상담 및 무상체험 신청하기
-      </a>
-    </div>
+  <a href="javascript:void(0);" onclick="loadAndOpenKakao()" class="kakao_btn">
+    <i class="fas fa-comment"></i> 카카오톡 상담 및 무상체험 신청하기
+  </a>
+</div>
 
-    <script>
-      // AOS-like scroll script removal (handled by script.js)
-    </script>
-    <script>
+<script>
   let isKakaoInitialized = false;
+  let isSdkLoading = false;
+  const KAKAO_JS_KEY = '35e09e7dcd0a4b33c26cbee11d4b829a'; // 발급받은 키 확인
+  const KAKAO_CHANNEL_ID = '_rxaeDn'; // 채널 ID 확인
 
   function loadAndOpenKakao() {
-    // 1. 이미 SDK가 로드되어 있다면 바로 채팅 실행
+    // 1. 이미 초기화되었다면 바로 액션 실행
     if (isKakaoInitialized) {
-      executeKakaoAddChannel();
+      executeAction();
       return;
     }
 
-    // 2. 버튼을 처음 눌렀을 때만 SDK를 동적으로 생성해서 삽입
+    // 2. 중복 로딩 방지
+    if (isSdkLoading) return;
+    isSdkLoading = true;
+
+    // 3. SDK 동적 로드 (클릭 시점에만)
     const script = document.createElement('script');
     script.src = "https://t1.kakaocdn.net/kakao_js_sdk/2.7.0/kakao.min.js";
     script.async = true;
 
     script.onload = function() {
-      // SDK 파일 로드가 완료되면 초기화 진행
-      if (window.Kakao) {
-        if (!Kakao.isInitialized()) {
-          // ★★★ 여기에 복사한 JavaScript 키를 넣으세요 ★★★
-          Kakao.init('35e09e7dcd0a4b33c26cbee11d4b829a'); 
+      try {
+        if (window.Kakao && !Kakao.isInitialized()) {
+          Kakao.init(KAKAO_JS_KEY);
         }
         isKakaoInitialized = true;
-        executeKakaoAddChannel();
+        isSdkLoading = false;
+        executeAction();
+      } catch (e) {
+        isSdkLoading = false;
+        fallback();
       }
+    };
+
+    script.onerror = function() {
+      isSdkLoading = false;
+      fallback();
     };
 
     document.head.appendChild(script);
   }
 
-  function executeKakaoAddChannel() {
-    // 실제 카카오톡 앱을 호출하는 함수
-    Kakao.Channel.addChannel({
-      channelPublicId: '_rxaeDn', // 본인의 채널 ID (예: _rxaeDn)
-    });
+  function executeAction() {
+    const ua = navigator.userAgent.toLowerCase();
+    // 메타(인스타/페북), 네이버, 틱톡 인앱 브라우저 체크
+    const isInApp = /fbav|instagram|naver|tiktok/.test(ua);
+
+    // 인앱 브라우저라면 SDK 팝업 대신 가장 안정적인 fallback(직접 이동)으로 처리
+    if (isInApp) {
+      fallback();
+      return;
+    }
+
+    // 일반 브라우저라면 SDK의 addChannel 기능을 시도
+    try {
+      Kakao.Channel.addChannel({
+        channelPublicId: KAKAO_CHANNEL_ID,
+      });
+      
+      // SDK 호출 후 1.5초간 반응 없으면 보험으로 fallback 실행
+      setTimeout(function() {
+        // 실제 앱이 열렸는지 체크하기 어렵기에, 안전하게 팝업 차단 등을 대비해 실행
+        // (단, addChannel 성공 시 페이지가 이동하므로 큰 방해는 안 됨)
+      }, 1500);
+    } catch (e) {
+      fallback();
+    }
+  }
+
+  function fallback() {
+    const ua = navigator.userAgent.toLowerCase();
+    const isInApp = /fbav|instagram|naver|tiktok/.test(ua);
+    const targetUrl = `https://pf.kakao.com/${KAKAO_CHANNEL_ID}/friend`;
+
+    if (isInApp) {
+      // 인앱 브라우저: 팝업 차단 방지를 위해 '현재 창'에서 이동 (뒤로가기 시 랜딩 복귀)
+      window.location.href = targetUrl;
+    } else {
+      // 일반 브라우저(크롬, 사파리 등): '새 탭'으로 열어 랜딩 페이지 유지
+      window.open(targetUrl, "_blank");
+    }
   }
 </script>
   </body>
