@@ -2724,7 +2724,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function loadAndOpenKakao() {
     // 1. 이미 SDK가 로드되어 있다면 바로 채팅 실행
     if (isKakaoInitialized) {
-      executeKakaochat();
+      executeKakaoChat();
       return;
     }
 
@@ -2741,11 +2741,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           Kakao.init('35e09e7dcd0a4b33c26cbee11d4b829a'); 
         }
         isKakaoInitialized = true;
-        executeKakaochat();
+        executeKakaoChat();
       }
     };
 
-    document.head.chat(script);
+    document.head.appendChild(script);
   }
 
   function executeKakaoaddChannel() {
