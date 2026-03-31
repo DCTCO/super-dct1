@@ -203,32 +203,42 @@ body {
 }
 
 .video-container {
-    max-width: 800px; /* 원하는 영상 너비 조절 */
-    margin: 40px auto;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 100%;           /* 100%에서 90%로 수정 */
+    max-width: 800px;
+    margin: 40px auto;    /* 중앙 정렬 */
+    padding: 0;
 }
 
 .video-wrapper {
     position: relative;
-    padding-top: 56.25%; /* 16:9 비율 유지 */
+    width: 100%;
+    padding-top: 56.25%;
+    height: 0;
     background-color: #000;
+    border-radius: 16px;
+    overflow: hidden;
     cursor: pointer;
+    /* [추가] 확대 애니메이션 */
     transition: transform 0.3s ease;
 }
 
+/* [추가] 마우스 올렸을 때 확대 */
 .video-wrapper:hover {
     transform: scale(1.02);
 }
 
-.thumb-img {
+.video-wrapper img, 
+.video-wrapper iframe {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    border: none;
     object-fit: cover;
-    opacity: 0.8;
 }
 
+/* [추가] 재생 버튼 스타일 */
 .play-button {
     position: absolute;
     top: 50%; left: 50%;
@@ -242,10 +252,12 @@ body {
 
 .play-button svg { width: 32px; height: 32px; fill: #333; }
 
+/* [추가] 이름/제목 스타일 */
 .video-overlay {
     position: absolute;
     bottom: 20px; left: 20px;
     color: white; font-weight: 600; font-size: 1.1rem;
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     z-index: 2;
+    pointer-events: none; /* 클릭 방해 금지 */
 }
