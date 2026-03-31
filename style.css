@@ -233,6 +233,7 @@ body {
 /* --- 비디오 섹션 최종 --- */
 .video-section {
     width: 100% !important;
+    max-width: 480px !important;
     display: flex;
     justify-content: center;
     margin: 40px 0;
