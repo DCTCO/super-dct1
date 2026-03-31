@@ -230,36 +230,29 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-/* --- 최종 비디오 교정 코드 --- */
-.video-root-section {
+/* --- 비디오 레이아웃 강제 교정 --- */
+.video-section {
     width: 100% !important;
-    max-width: 480px !important; /* 현재 페이지 가이드인 480px에 맞춤 */
+    max-width: 480px !important; /* 현재 사이트의 모바일 기준 너비 */
     margin: 40px auto !important;
     padding: 0 15px !important;
     box-sizing: border-box !important;
 }
 
-.video-fixed-aspect {
+.video-container {
     position: relative !important;
     width: 100% !important;
-    padding-top: 56.25% !important; /* 16:9 비율 */
+    padding-top: 56.25% !important; /* 16:9 비율 강제 확보 */
     height: 0 !important;
     background-color: #000 !important;
     border-radius: 12px !important;
     overflow: hidden !important;
     cursor: pointer !important;
-    transition: transform 0.3s ease !important;
-    display: block !important;
 }
 
-/* 마우스 올릴 때 확대 효과 */
-.video-fixed-aspect:hover {
-    transform: scale(1.02) !important;
-}
-
-/* 이미지/영상이 칸 차지하거나 튀어나가는 것 방지 */
-.video-fixed-aspect img, 
-.video-fixed-aspect iframe {
+/* 썸네일 이미지와 영상을 박스 안에 완전히 고정 (화살표/여백 방지) */
+.video-container img, 
+.video-container iframe {
     position: absolute !important;
     top: 0 !important;
     left: 0 !important;
@@ -268,12 +261,12 @@ body {
     margin: 0 !important;
     padding: 0 !important;
     display: block !important;
-    object-fit: cover !important;
+    object-fit: cover !important; /* 이미지 비율 유지하며 꽉 채움 */
     border: none !important;
 }
 
-/* 재생 버튼 */
-.video-play-icon {
+/* 재생 버튼 (중앙 고정) */
+.play-btn-overlay {
     position: absolute !important;
     top: 50% !important;
     left: 50% !important;
@@ -288,14 +281,13 @@ body {
     z-index: 10 !important;
 }
 
-/* 이름 표기 */
-.video-user-label {
+/* 텍스트 오버레이 */
+.video-label {
     position: absolute !important;
     bottom: 15px !important;
     left: 15px !important;
     color: #fff !important;
     font-weight: bold !important;
-    font-size: 16px !important;
     text-shadow: 0 2px 4px rgba(0,0,0,0.8) !important;
     z-index: 10 !important;
 }
