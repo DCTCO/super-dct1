@@ -62,11 +62,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
        
       <section
         id="hero"
+        class="bg-navy"
         
-        style="
-          /* background: linear-gradient(135deg, #f8fafc, #eff6ff); */
-          padding-top: 70px;
-        "
         
       >
         <div class="container text-center">
@@ -77,30 +74,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <span class="fw-bold">버튼 한 번</span>으로</span
             ><br />
             <span
-              >가게 <span class="fw-bold">음식물 쓰레기</span></span
+              >가게 <span class="neon-text fw-bold">음식물 쓰레기</span></span
             ><br />
           </h1>
-          <p style="margin-top: 2px">
-            <span
+          <p style="margin-top: 2px"  >
+            <span class="neon-bg"
               style="
                 padding: 0 4px;
-                font-size: 50px;
+                font-size: 45px;
                 font-weight: 700;
-                background: linear-gradient(
-                  to top,
-                  var(--neon) 30%,
-                  transparent 30%
-                );
+                ;
               "
             >
               처리비용 평생 <span style="color: red">0원</span>
             </span>
           </p>
 
-          <p class=" fs-20" style="margin-top: 70px">
-            그 동안 고생하셨습니다<br />
-            <span class="blue fw-bold">100% 무상체험 </span
-            ><span>기회를 드릴게요</span>
+          <p style="font-size: 18px; margin-top: 70px">
+            "<span class="neon-text fw-bold" style="font-size: 24px;">몸
+              </span> 편한데 <span class="neon-text fw-bold" style="font-size: 24px;">돈
+              </span>까지 아끼니 장사 할 맛 납니다"<br />
+            <span>체험 후 반납하는 </span><span class="neon-text fw-bold" style="font-size: 24px;">100% 무료체험
+              </span>
           </p>
           <div
             style="
@@ -497,7 +492,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="container text-center">
           <div
             style="
-              max-width: 340px;
+              max-width: 400px;
               margin: 0 auto;
               border: 1px solid var(--navy);
               padding: 40px 20px;
@@ -561,6 +556,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </span>
               하세요.
             </p>
+
+          <!-- GIF Placeholder -->
+          <div
+            class="gif-container"
+            style="
+              width: 100%;
+              background: rgba(255, 255, 255, 0.05);
+              border-radius: 20px;
+              margin: 30px 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              overflow: hidden;
+              border: 1px solid rgba(255, 255, 255, 0.1);
+            "
+          >
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              style="width: 100%; height: auto; display: block"
+            >
+              <source src="images/16.webm" type="video/webm" />
+              <source src="images/16.mp4" type="video/mp4" />
+              비디오를 지원하지 않는 브라우저입니다.
+            </video>
+          </div>
 
             <div
               style="
@@ -1052,7 +1075,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               2가지 특별 혜택
             </div>
           </div>
+          
+<div class="benefit-wrap" style="margin-top: 20px;">
+  
+  <div class="bn-box">
+    <div class="benefit-icon">🎁</div>
+    <div class="benefit-title">100% 무료 체험</div>
+    <div class="benefit-desc">구매와 상관없이 모든 비용 0</div>
+  </div>
+
+  <div class="bn-box">
+    <div class="benefit-icon">💵</div>
+    <div class="benefit-title">구매시 한정 수량 가격 지원</div>
+    <div class="benefit-desc">국산 전국 최저가 보장</div>
+  </div>
+
+</div>
+
         </div>
+        
       </section>
 
       <!-- Benefit 01 & 02 -->
@@ -1215,7 +1256,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </p>
           </div>
 
-         <div class="video-section" style="margin-bottom: 30px;">
+<div class="video-section" style="margin-bottom: 30px;">
   <div class="video-wrapper" onclick="playVideo(this)">
 
     
@@ -1230,13 +1271,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   </div>
 </div>
-                 
+
           <div style="display: flex; flex-direction: column; gap: 20px;">
             <div
               style="
                 background: white;
                 border-radius: 20px;
-                padding: 30px 25px;
+                padding: 30px 25px;              
                 border: 1px solid #e2e8f0;
                 position: relative;
                 box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
@@ -2730,6 +2771,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <i class="fas fa-comment"></i> 카카오톡 상담 및 무상체험 신청하기
       </a>
     </div>
-   
+
+    <script>
+      // AOS-like scroll script removal (handled by script.js)
+    </script>
   </body>
 </html>
