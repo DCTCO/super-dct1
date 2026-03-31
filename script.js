@@ -50,3 +50,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+function loadVideo(videoId) {
+    const wrapper = document.getElementById('videoPlayer');
+    // 유튜브 매개변수: 자동재생(1), 로고숨기기(modestbranding), 관련영상제한(rel=0)
+    const iframe = document.createElement('iframe');
+    
+    iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0`);
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.style.position = 'absolute';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+
+    // 기존 썸네일과 버튼 삭제 후 iframe 삽입
+    wrapper.innerHTML = '';
+    wrapper.appendChild(iframe);
+}
