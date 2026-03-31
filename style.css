@@ -202,38 +202,39 @@ body {
   object-fit: cover;   /* 꽉 채움 (잘릴 수 있음) */
 }
 
-/* 1. 가장 바깥쪽 영역: 화면 너비를 절대 넘지 않게 함 */
+/* 기존 비디오 관련 CSS는 모두 지우고 이 코드로 교체하세요 */
 .video-section {
     width: 100% !important;
     display: flex;
     justify-content: center;
     margin: 40px 0;
+    overflow: hidden; /* 밖으로 나가는 것 차단 */
 }
 
-/* 2. 실제 영상이 차지할 너비 (90%) */
 .video-container {
-    width: 90% !important;   /* 폰 화면의 90%만 차지하게 강제 */
-    max-width: 800px !important; /* PC에서는 800px까지만 */
+    width: 90% !important; /* 모바일 가로 90% */
+    max-width: 800px !important;
     margin: 0 auto !important;
 }
 
-/* 3. 16:9 비율 유지 박스 */
 .video-wrapper {
     position: relative !important;
     width: 100% !important;
-    padding-top: 56.25% !important; /* 세로 길이를 너비의 56%로 자동 조절 */
+    padding-top: 56.25% !important; /* 16:9 비율 고정 */
     height: 0 !important;
     background-color: #000;
     border-radius: 16px;
     overflow: hidden;
     cursor: pointer;
-    transition: transform 0.3s ease;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease; /* 확대 애니메이션 */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-.video-wrapper:hover { transform: scale(1.02); }
+/* 1. 썸네일 확대 효과 다시 추가 */
+.video-wrapper:hover {
+    transform: scale(1.03);
+}
 
-/* 4. 내부 요소(이미지, iframe) 강제 고정 */
 .video-wrapper img, 
 .video-wrapper iframe {
     position: absolute !important;
@@ -241,17 +242,31 @@ body {
     left: 0 !important;
     width: 100% !important;
     height: 100% !important;
+    object-fit: cover !important;
     border: none !important;
-    object-fit: cover;
+    margin: 0 !important;
+    display: block !important; /* 이미지 아래 빈칸 생기는 문제 해결 */
 }
 
-/* 재생 버튼 & 이름 (디자인) */
-.play-button {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 60px; height: 60px; background: rgba(255, 255, 255, 0.9);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2;
+/* 2. 재생 버튼(화살표) 디자인 */
+.play-button-circle {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px; height: 60px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 5;
 }
-.video-overlay {
-    position: absolute; bottom: 15px; left: 15px; color: white;
-    font-weight: 600; font-size: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 2;
+
+/* 3. 이름 오버레이 */
+.video-name-tag {
+    position: absolute;
+    bottom: 20px; left: 20px;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    z-index: 5;
 }
