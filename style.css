@@ -202,7 +202,6 @@ body {
   object-fit: cover;   /* 꽉 채움 (잘릴 수 있음) */
 }
 
-<style>
 /* 1. 가장 바깥쪽 영역: 화면 너비를 절대 넘지 않게 함 */
 .video-section {
     width: 100% !important;
@@ -213,7 +212,7 @@ body {
 
 /* 2. 실제 영상이 차지할 너비 (90%) */
 .video-container {
-    width: 100% !important;   /* 폰 화면의 90%만 차지하게 강제 */
+    width: 90% !important;   /* 폰 화면의 90%만 차지하게 강제 */
     max-width: 800px !important; /* PC에서는 800px까지만 */
     margin: 0 auto !important;
 }
@@ -256,4 +255,3 @@ body {
     position: absolute; bottom: 15px; left: 15px; color: white;
     font-weight: 600; font-size: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 2;
 }
-</style>
