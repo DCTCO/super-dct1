@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-unction loadVideo(videoId) {
+function loadVideo(videoId) {
     const wrapper = document.getElementById('videoPlayer');
     // 클릭하는 순간 내부의 모든 것(이미지, 버튼, 텍스트)을 싹 지움
     wrapper.innerHTML = ''; 
