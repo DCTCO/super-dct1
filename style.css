@@ -230,64 +230,66 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-/* --- 비디오 레이아웃 강제 교정 --- */
+/* --- 비디오 섹션 최종 --- */
 .video-section {
     width: 100% !important;
-    max-width: 480px !important; /* 현재 사이트의 모바일 기준 너비 */
-    margin: 40px auto !important;
-    padding: 0 15px !important;
-    box-sizing: border-box !important;
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
 }
 
 .video-container {
-    position: relative !important;
-    width: 100% !important;
-    padding-top: 56.25% !important; /* 16:9 비율 강제 확보 */
-    height: 0 !important;
-    background-color: #000 !important;
-    border-radius: 12px !important;
-    overflow: hidden !important;
-    cursor: pointer !important;
+    width: 90% !important;
+    max-width: 480px !important; /* 모바일 기준 너비 가두기 */
+    margin: 0 auto !important;
 }
 
-/* 썸네일 이미지와 영상을 박스 안에 완전히 고정 (화살표/여백 방지) */
-.video-container img, 
-.video-container iframe {
+.video-wrapper {
+    position: relative !important;
+    width: 100% !important;
+    padding-top: 56.25% !important; /* 16:9 비율 */
+    height: 0 !important;
+    background-color: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* 확대 효과 */
+}
+
+/* 1. 마우스 올릴 때 썸네일 확대 */
+.video-wrapper:hover { transform: scale(1.03); }
+
+/* 2. 썸네일과 영상을 박스 안에 완전 박제 */
+.video-wrapper img, 
+.video-wrapper iframe {
     position: absolute !important;
     top: 0 !important;
     left: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    display: block !important;
-    object-fit: cover !important; /* 이미지 비율 유지하며 꽉 채움 */
+    object-fit: cover !important;
     border: none !important;
+    margin: 0 !important;
+    display: block !important;
 }
 
-/* 재생 버튼 (중앙 고정) */
-.play-btn-overlay {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    width: 60px !important;
-    height: 60px !important;
-    background: rgba(255, 255, 255, 0.9) !important;
-    border-radius: 50% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    z-index: 10 !important;
+/* 3. 재생 버튼(화살표) */
+.play-btn-circle {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px; height: 60px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 5;
 }
 
-/* 텍스트 오버레이 */
-.video-label {
-    position: absolute !important;
-    bottom: 15px !important;
-    left: 15px !important;
-    color: #fff !important;
-    font-weight: bold !important;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8) !important;
-    z-index: 10 !important;
+/* 4. 이름 표기 */
+.video-name-label {
+    position: absolute;
+    bottom: 15px; left: 15px;
+    color: white; font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    z-index: 5;
 }
