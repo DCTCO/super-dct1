@@ -53,20 +53,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function loadVideo(videoId) {
     const wrapper = document.getElementById('videoPlayer');
-    // 유튜브 매개변수: 자동재생(1), 로고숨기기(modestbranding), 관련영상제한(rel=0)
+    // 내부를 싹 비워서 화살표나 텍스트가 칸을 차지하는 문제를 원천 봉쇄
+    wrapper.innerHTML = ''; 
+
     const iframe = document.createElement('iframe');
-    
     iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0`);
     iframe.setAttribute('frameborder', '0');
-    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    iframe.setAttribute('allow', 'autoplay; encrypted-media; fullscreen');
     iframe.setAttribute('allowfullscreen', '');
-    iframe.style.position = 'absolute';
-    iframe.style.top = '0';
-    iframe.style.left = '0';
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
-
-    // 기존 썸네일과 버튼 삭제 후 iframe 삽입
-    wrapper.innerHTML = '';
+    
+    // CSS에서 absolute 설정을 했으므로 여기서는 추가 속성 필요 없음
     wrapper.appendChild(iframe);
 }
