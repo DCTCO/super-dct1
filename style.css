@@ -202,62 +202,58 @@ body {
   object-fit: cover;   /* 꽉 채움 (잘릴 수 있음) */
 }
 
-.video-container {
-    width: 100%;           /* 100%에서 90%로 수정 */
-    max-width: 800px;
-    margin: 40px auto;    /* 중앙 정렬 */
-    padding: 0;
+<style>
+/* 1. 가장 바깥쪽 영역: 화면 너비를 절대 넘지 않게 함 */
+.video-section {
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
 }
 
+/* 2. 실제 영상이 차지할 너비 (90%) */
+.video-container {
+    width: 100% !important;   /* 폰 화면의 90%만 차지하게 강제 */
+    max-width: 800px !important; /* PC에서는 800px까지만 */
+    margin: 0 auto !important;
+}
+
+/* 3. 16:9 비율 유지 박스 */
 .video-wrapper {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%;
-    height: 0;
+    position: relative !important;
+    width: 100% !important;
+    padding-top: 56.25% !important; /* 세로 길이를 너비의 56%로 자동 조절 */
+    height: 0 !important;
     background-color: #000;
     border-radius: 16px;
     overflow: hidden;
     cursor: pointer;
-    /* [추가] 확대 애니메이션 */
     transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-/* [추가] 마우스 올렸을 때 확대 */
-.video-wrapper:hover {
-    transform: scale(1.02);
-}
+.video-wrapper:hover { transform: scale(1.02); }
 
+/* 4. 내부 요소(이미지, iframe) 강제 고정 */
 .video-wrapper img, 
 .video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    border: none;
+    border: none !important;
     object-fit: cover;
 }
 
-/* [추가] 재생 버튼 스타일 */
+/* 재생 버튼 & 이름 (디자인) */
 .play-button {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 68px; height: 68px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    z-index: 2;
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 60px; height: 60px; background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2;
 }
-
-.play-button svg { width: 32px; height: 32px; fill: #333; }
-
-/* [추가] 이름/제목 스타일 */
 .video-overlay {
-    position: absolute;
-    bottom: 20px; left: 20px;
-    color: white; font-weight: 600; font-size: 1.1rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    z-index: 2;
-    pointer-events: none; /* 클릭 방해 금지 */
+    position: absolute; bottom: 15px; left: 15px; color: white;
+    font-weight: 600; font-size: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 2;
 }
+</style>
