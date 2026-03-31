@@ -205,8 +205,7 @@ body {
 .video-section {
   max-width: 800px;
   margin: 0 auto;
-  margin-bottom: 30px;
-}
+  }
 
 .video-wrapper {
   position: relative;
@@ -215,6 +214,7 @@ body {
   cursor: pointer;
   overflow: hidden;
   border-radius: 12px;
+    margin-bottom: 30px;
 }
 
 /* 썸네일 */
