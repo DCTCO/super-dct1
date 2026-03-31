@@ -51,17 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-function loadVideo(videoId) {
-    const wrapper = document.getElementById('videoPlayer');
-    // 클릭하는 순간 내부의 모든 것(이미지, 버튼, 텍스트)을 싹 지움
-    wrapper.innerHTML = ''; 
-
-    const iframe = document.createElement('iframe');
-    iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0`);
-    iframe.setAttribute('frameborder', '0');
-    iframe.setAttribute('allow', 'autoplay; encrypted-media; fullscreen');
-    iframe.setAttribute('allowfullscreen', '');
-    
-    // CSS에서 이미 absolute 설정을 했으므로 추가 스타일 필요 없음
-    wrapper.appendChild(iframe);
+function playVideo(element) {
+  element.innerHTML = `
+    <iframe 
+      src="https://www.youtube.com/embed/xUemVdPq_58?autoplay=1&rel=0"
+      allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+      allowfullscreen
+      playsinline>
+    </iframe>
+  `;
 }
