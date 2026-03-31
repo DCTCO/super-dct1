@@ -51,9 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-function loadVideo(videoId) {
+unction loadVideo(videoId) {
     const wrapper = document.getElementById('videoPlayer');
-    // 내부를 싹 비워서 화살표나 텍스트가 칸을 차지하는 문제를 원천 봉쇄
+    // 클릭하는 순간 내부의 모든 것(이미지, 버튼, 텍스트)을 싹 지움
     wrapper.innerHTML = ''; 
 
     const iframe = document.createElement('iframe');
@@ -62,6 +62,6 @@ function loadVideo(videoId) {
     iframe.setAttribute('allow', 'autoplay; encrypted-media; fullscreen');
     iframe.setAttribute('allowfullscreen', '');
     
-    // CSS에서 absolute 설정을 했으므로 여기서는 추가 속성 필요 없음
+    // CSS에서 이미 absolute 설정을 했으므로 추가 스타일 필요 없음
     wrapper.appendChild(iframe);
 }
